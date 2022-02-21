@@ -1,0 +1,49 @@
+- name: add the group tomcat
+  ansible.builtin.group:
+    name: tomcat
+    state: present
+
+- name: add the user tomcat
+  ansible.builtin.user:
+    name: tomcat
+    groups: tomcat
+    shell: /bin/false
+    create_home: yes
+    home: /opt/tomcat
+    append: yes
+
+- name: download Tomcat and unpack
+  unarchive:
+    src: https://www-eu.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz
+    dest: /opt/tomcat
+    remote_src: True
+
+- name: create a symbolic link for Tomcat
+  ansible.builtin.file:
+    src: /opt/tomcat/apache-tomcat-{{ tomcat_version }}
+    dest: /opt/tomcat/latest
+    state: link
+
+- name: change ownership of a Tomcat directory
+  ansible.builtin.file:
+    path: /opt/tomcat
+    state: directory
+    recurse: yes
+    owner: tomcat
+
+- name: make all Tomcat's scripts executable
+  ansible.builtin.file:
+    path: /opt/tomcat/latest/bin/
+    mode: +x
+
+- name: create systemd unit for Tomcat
+  copy:
+    src: tomcat.service
+    dest: /etc/systemd/system/tomcat.service
+
+- name: restart systemd and start+enable tomcat service unit
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    state: started
+    enabled: yes
+    name: tomcat.service

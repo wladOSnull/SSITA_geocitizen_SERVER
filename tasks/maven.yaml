@@ -1,0 +1,27 @@
+- name: download Maven and unpack
+  unarchive:
+    src: https://dlcdn.apache.org/maven/maven-3/{{ maven_version }}/binaries/apache-maven-{{ maven_version }}-bin.tar.gz
+    dest: /opt
+    remote_src: True
+
+- name: create a symbolic link for Maven
+  ansible.builtin.file:
+    src: ../opt/apache-maven-{{ maven_version }}
+    dest: /opt/maven
+    state: link
+
+- name: create variables script for Maven  
+  ansible.builtin.copy:
+    src: maven.sh
+    dest: /etc/profile.d/maven.sh
+    mode: '777'
+- name: import variables script for Maven
+  ansible.builtin.shell: . /etc/profile.d/maven.sh
+
+- name: add alias for Maven
+  ansible.builtin.shell: echo "alias mvn='/opt/maven/bin/mvn'" >> /home/ubuntu/.bashrc
+
+- name: reload bash environment
+  ansible.builtin.shell: . /home/ubuntu/.bashrc
+
+  

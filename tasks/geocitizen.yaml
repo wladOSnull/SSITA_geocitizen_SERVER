@@ -1,0 +1,24 @@
+- name: create deploy script for Geo Citizen  
+  ansible.builtin.copy:
+    src: project.sh
+    dest: /home/ubuntu
+    mode: '775'
+
+- name: get IP of DB
+  set_fact:
+    GEODB: "{{ lookup('file', '/tmp/varfile') }}"
+
+- name: stop Tomcat for releasing instance resources
+  become: yes
+  service: "name={{ item }} state=stopped"
+  with_items:
+    - tomcat
+
+- name: deploy Geo Citizen
+  ansible.builtin.shell: "/home/ubuntu/project.sh {{ host_public }} {{ GEODB }}"
+
+- name: restart Tomcat
+  become: yes
+  service: "name={{ item }} state=restarted"
+  with_items:
+    - tomcat

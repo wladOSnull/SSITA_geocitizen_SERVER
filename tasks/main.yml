@@ -1,0 +1,9 @@
+---
+# tasks file for SSITA_geocitizen_SERVER
+
+- include_tasks: preset.yaml
+- include_tasks: tomcat.yaml
+- include_tasks: firewall.yaml
+- include_tasks: maven.yaml
+- include_tasks: geocitizen.yaml
+

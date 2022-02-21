@@ -1,0 +1,23 @@
+- name: update apt cache
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 86400
+
+- name: install git
+  apt:
+    name: git
+
+- name: install JDK
+  apt:
+    name: openjdk-11-jdk
+
+- name: create a symbolic link for JDK
+  ansible.builtin.file:
+    src: /usr/lib/jvm/java-1.11.0-openjdk-amd64
+    dest: /usr/lib/jvm/default-java
+    state: link
+
+- name: install chrony
+  apt:
+    name: chrony
