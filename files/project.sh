@@ -19,8 +19,8 @@ G_DB_IP=${2}
 G_DB_USERNAME="geocitizen"
 G_DB_PASSWORD="weakpass"
 
-G_EMAIL_ADDRESS="???"
-G_EMAIL_PASSWORD="???"
+G_EMAIL_ADDRESS=${3}
+G_EMAIL_PASSWORD=${4}
 
 ### the project
 ##################################################
@@ -168,4 +168,5 @@ echo -e "\n##################################################\nThe project deplo
 
 ### project deploying
 sudo cp ${G_NAME}/target/citizen.war /opt/tomcat/latest/webapps
+
 
