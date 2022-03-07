@@ -1,6 +1,6 @@
 galaxy_info:
   author: wladOSnull
-  description: simple role for deploying EC2 Server on AWS for Geo Citizen application
+  description: simple role for deploying instance Server on AWS/GCP for Geo Citizen application
   company: SSITA DevOps
 
   # If the issue tracker for your role is not on github, uncomment the
