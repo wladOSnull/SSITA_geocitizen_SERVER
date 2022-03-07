@@ -1,5 +1,5 @@
 ---
-- hosts: all
-  remote_user: ubuntu
+- hosts: localhost
+  remote_user: root
   roles:
     - SSITA_geocitizen_SERVER

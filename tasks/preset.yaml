@@ -1,3 +1,14 @@
+- name: check if service Tomcat exist
+  stat: path=/etc/systemd/system/tomcat.service
+  register: service_status
+
+- name: stop Tomcat for releasing instance resources
+  become: yes
+  service: "name={{ item }} state=stopped"
+  when: service_status.stat.exists
+  with_items:
+    - tomcat
+
 - name: update apt cache
   apt:
     upgrade: yes
@@ -21,3 +32,7 @@
 - name: install chrony
   apt:
     name: chrony
+
+- name: get private IP of DB
+  set_fact:
+    GEODB: "{{ DB_addr }}"

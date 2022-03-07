@@ -4,10 +4,6 @@
     dest: /home/ubuntu
     mode: '775'
 
-- name: get IP of DB
-  set_fact:
-    GEODB: "{{ lookup('file', '/tmp/varfile') }}"
-
 - name: stop Tomcat for releasing instance resources
   become: yes
   service: "name={{ item }} state=stopped"
