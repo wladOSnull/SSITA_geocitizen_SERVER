@@ -17,11 +17,3 @@
     mode: '777'
 - name: import variables script for Maven
   ansible.builtin.shell: . /etc/profile.d/maven.sh
-
-- name: add alias for Maven
-  ansible.builtin.shell: echo "alias mvn='/opt/maven/bin/mvn'" >> /home/ubuntu/.bashrc
-
-- name: reload bash environment
-  ansible.builtin.shell: . /home/ubuntu/.bashrc
-
-  
