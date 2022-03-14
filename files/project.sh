@@ -162,7 +162,7 @@ echo -e "##################################################\nThe project buildin
 #(cd Geocit134; eval mvn liquibase:dropAll)
 
 ### project building
-(cd ${G_NAME}; mvn install)
+(cd ${G_NAME}; /opt/maven/bin/mvn install)
 
 echo -e "\n##################################################\nThe project deploying\n##################################################\n"
 
