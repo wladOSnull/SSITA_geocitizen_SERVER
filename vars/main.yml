@@ -2,5 +2,5 @@
 # vars file for SSITA_geocitizen_SERVER
 
 tomcat_version: 9.0.59
-maven_version: 3.8.4
+maven_version: 3.8.5
 ...
