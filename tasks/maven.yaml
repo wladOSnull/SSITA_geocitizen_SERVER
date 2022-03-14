@@ -15,5 +15,6 @@
     src: maven.sh
     dest: /etc/profile.d/maven.sh
     mode: '777'
+
 - name: import variables script for Maven
   ansible.builtin.shell: . /etc/profile.d/maven.sh
