@@ -4,6 +4,12 @@
     port: ssh
     proto: tcp
 
+- name: allow TCP access to 80 port
+  community.general.ufw:
+    rule: allow
+    port: '80'
+    proto: tcp
+
 - name: allow TCP access to 8080 port
   community.general.ufw:
     rule: allow
