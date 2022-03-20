@@ -33,6 +33,6 @@
   apt:
     name: chrony
 
-- name: get private IP of DB
-  set_fact:
-    GEODB: "{{ DB_addr }}"
+#- name: get private IP of DB
+#  set_fact:
+#    GEODB: "{{ DB_addr }}"
